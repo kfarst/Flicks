@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +35,6 @@ class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.ViewHolde
         // for any view that will be set as you render a row
         public TextView movieTitle;
         public TextView movieSummary;
-        public TextView foo;
         public ImageView moviePoster;
 
         // We also create a constructor that accepts the entire item row
@@ -85,5 +87,17 @@ class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.ViewHolde
 
     private String imageUrl (String imageName) {
         return "https://image.tmdb.org/t/p/w342" + imageName;
+    }
+
+    // Clean all elements of the recycler
+    public void clear() {
+        mMovies.clear();
+        notifyDataSetChanged();
+    }
+
+    // Add a list of items
+    public void addAll(ArrayList<Movie> movies) {
+        mMovies.addAll(movies);
+        notifyDataSetChanged();
     }
 }

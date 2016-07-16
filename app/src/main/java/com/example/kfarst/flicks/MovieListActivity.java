@@ -2,6 +2,7 @@ package com.example.kfarst.flicks;
 
 import android.content.Context;
 import android.preference.PreferenceActivity;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,9 +21,10 @@ import java.util.Collection;
 import cz.msebera.android.httpclient.Header;
 
 public class MovieListActivity extends AppCompatActivity {
-    ArrayList<Movie> movies = new ArrayList<Movie>();
-    MovieItemsAdapter moviesAdapter;
-    RecyclerView lvMovies;
+    private SwipeRefreshLayout swipeContainer;
+    private ArrayList<Movie> movies = new ArrayList<Movie>();
+    private MovieItemsAdapter moviesAdapter;
+    private RecyclerView lvMovies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +34,41 @@ public class MovieListActivity extends AppCompatActivity {
         lvMovies = (RecyclerView) findViewById(R.id.lvMovies);
         lvMovies.setLayoutManager(new LinearLayoutManager(this));
 
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        // Setup refresh listener which triggers new data loading
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                fetchMovies();
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
+
+        fetchMovies();
+    }
+
+    private void fetchMovies () {
         MoviesApiClient.get("now_playing", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject movieList) {
                 // If the response is JSONObject instead of expected JSONArray
                 try {
-                    movies = Movie.mapObjectsFromJSON(movieList.getJSONArray("results"));
-                    moviesAdapter = new MovieItemsAdapter(movies);
-                    lvMovies.setAdapter(moviesAdapter);
-                    //moviesAdapter.notifyDataSetChanged();
+                    if (movies.size() > 0) {
+                        moviesAdapter.clear();
+                        moviesAdapter.addAll(Movie.mapObjectsFromJSON(movieList.getJSONArray("results")));
+                        swipeContainer.setRefreshing(false);
+                    } else {
+                        movies = Movie.mapObjectsFromJSON(movieList.getJSONArray("results"));
+                        moviesAdapter = new MovieItemsAdapter(movies);
+                        lvMovies.setAdapter(moviesAdapter);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
