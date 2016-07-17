@@ -1,6 +1,7 @@
 package com.example.kfarst.flicks;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.preference.PreferenceActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -54,6 +55,12 @@ public class MovieListActivity extends AppCompatActivity {
         fetchMovies();
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        moviesAdapter.setOrientation(newConfig.orientation);
+    }
+
     private void fetchMovies () {
         MoviesApiClient.get("now_playing", new JsonHttpResponseHandler() {
             @Override
@@ -67,6 +74,7 @@ public class MovieListActivity extends AppCompatActivity {
                     } else {
                         movies = Movie.mapObjectsFromJSON(movieList.getJSONArray("results"));
                         moviesAdapter = new MovieItemsAdapter(movies);
+                        moviesAdapter.setOrientation(getResources().getConfiguration().orientation);
                         lvMovies.setAdapter(moviesAdapter);
                     }
                 } catch (JSONException e) {

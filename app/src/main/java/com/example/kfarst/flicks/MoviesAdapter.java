@@ -1,6 +1,7 @@
 package com.example.kfarst.flicks;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +23,12 @@ import java.util.List;
  */
 class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.ViewHolder> {
     private List<Movie> mMovies;
+
+    public void setOrientation(int orientation) {
+        this.orientation = orientation;
+    }
+
+    private int orientation;
 
     // Pass in the contact array into the constructor
     public MovieItemsAdapter(List<Movie> listItems) {
@@ -67,17 +74,15 @@ class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.ViewHolde
     public void onBindViewHolder(MovieItemsAdapter.ViewHolder holder, int position) {
         Movie movie = mMovies.get(position);
 
-
-
         holder.movieTitle.setText(movie.getTitle());
         holder.movieSummary.setText(movie.getOverview());
 
         Picasso
-        .with(holder.moviePoster.getContext()).
-        load(imageUrl(movie.getPosterPath()))
-        //.placeholder(R.drawable.user_placeholder)
-        //.error(R.drawable.user_placeholder_error)
-        .into(holder.moviePoster);
+                .with(holder.moviePoster.getContext()).
+                load(imageUrl(orientation == Configuration.ORIENTATION_PORTRAIT ? movie.getPosterPath() : movie.getBackdropPath()))
+                //.placeholder(R.drawable.user_placeholder)
+                //.error(R.drawable.user_placeholder_error)
+                .into(holder.moviePoster);
     }
 
     @Override
