@@ -1,8 +1,6 @@
-package com.example.kfarst.flicks;
+package com.example.kfarst.flicks.activities;
 
-import android.content.Context;
 import android.content.res.Configuration;
-import android.preference.PreferenceActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,14 +8,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import com.example.kfarst.flicks.models.Movie;
+import com.example.kfarst.flicks.adapters.MovieItemsAdapter;
+import com.example.kfarst.flicks.api.MoviesApiClient;
+import com.example.kfarst.flicks.R;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -73,7 +73,7 @@ public class MovieListActivity extends AppCompatActivity {
                         swipeContainer.setRefreshing(false);
                     } else {
                         movies = Movie.mapObjectsFromJSON(movieList.getJSONArray("results"));
-                        moviesAdapter = new MovieItemsAdapter(movies);
+                        moviesAdapter = new MovieItemsAdapter(movies, getWindow().getDecorView().getWidth());
                         moviesAdapter.setOrientation(getResources().getConfiguration().orientation);
                         lvMovies.setAdapter(moviesAdapter);
                     }

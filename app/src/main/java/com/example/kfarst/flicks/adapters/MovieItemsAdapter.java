@@ -1,19 +1,17 @@
-package com.example.kfarst.flicks;
+package com.example.kfarst.flicks.adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.squareup.picasso.Picasso;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+import com.example.kfarst.flicks.R;
+import com.example.kfarst.flicks.models.Movie;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,7 @@ import java.util.List;
 /**
  * Created by kfarst on 7/13/16.
  */
-class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.ViewHolder> {
+public class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.ViewHolder> {
     private List<Movie> mMovies;
 
     public void setOrientation(int orientation) {
@@ -31,7 +29,7 @@ class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.ViewHolde
     private int orientation;
 
     // Pass in the contact array into the constructor
-    public MovieItemsAdapter(List<Movie> listItems) {
+    public MovieItemsAdapter(List<Movie> listItems, int displayWidth) {
         mMovies = listItems;
     }
 
@@ -78,10 +76,10 @@ class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.ViewHolde
         holder.movieSummary.setText(movie.getOverview());
 
         Picasso
-                .with(holder.moviePoster.getContext()).
-                load(imageUrl(orientation == Configuration.ORIENTATION_PORTRAIT ? movie.getPosterPath() : movie.getBackdropPath()))
-                //.placeholder(R.drawable.user_placeholder)
-                //.error(R.drawable.user_placeholder_error)
+                .with(holder.moviePoster.getContext())
+                .load(imageUrl(orientation == Configuration.ORIENTATION_PORTRAIT ? movie.getPosterPath() : movie.getBackdropPath()))
+                .placeholder(orientation == Configuration.ORIENTATION_PORTRAIT ? R.drawable.portrait_placeholder : R.drawable.landscape_placeholder)
+                //.resize(0, holder.moviePoster.getHeight())
                 .into(holder.moviePoster);
     }
 

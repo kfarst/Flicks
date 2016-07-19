@@ -1,4 +1,4 @@
-package com.example.kfarst.flicks;
+package com.example.kfarst.flicks.models;
 
 import org.json.JSONArray;
 import org.json.JSONException;

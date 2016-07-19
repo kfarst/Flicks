@@ -1,4 +1,4 @@
-package com.example.kfarst.flicks;
+package com.example.kfarst.flicks.models;
 
 /**
  * Created by kfarst on 7/13/16.

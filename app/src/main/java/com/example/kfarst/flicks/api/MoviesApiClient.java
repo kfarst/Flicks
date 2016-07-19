@@ -1,4 +1,4 @@
-package com.example.kfarst.flicks;
+package com.example.kfarst.flicks.api;
 import com.loopj.android.http.*;
 
 /**
