@@ -47,6 +47,10 @@ public class Movie implements Serializable {
         return popularity;
     }
 
+    public double getVoteAverage() {
+        return voteAverage;
+    }
+
     public boolean isVideo() {
         return video;
     }
@@ -60,6 +64,7 @@ public class Movie implements Serializable {
     private String title;
     private String backdropPath;
     private double popularity;
+    private double voteAverage;
     private boolean video;
 
     public Movie(JSONObject jsonObject) throws JSONException {
@@ -72,6 +77,7 @@ public class Movie implements Serializable {
         title = jsonObject.getString("title");
         backdropPath = jsonObject.getString("backdrop_path");
         popularity = jsonObject.getDouble("popularity");
+        voteAverage = jsonObject.getDouble("vote_average");
         video = jsonObject.getBoolean("video");
     }
 
