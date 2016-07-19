@@ -1,5 +1,6 @@
 package com.example.kfarst.flicks.activities;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -62,6 +63,8 @@ public class MovieListActivity extends AppCompatActivity {
     }
 
     private void fetchMovies () {
+        final Activity listActivity = this;
+
         MoviesApiClient.get("now_playing", new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject movieList) {
@@ -73,7 +76,7 @@ public class MovieListActivity extends AppCompatActivity {
                         swipeContainer.setRefreshing(false);
                     } else {
                         movies = Movie.mapObjectsFromJSON(movieList.getJSONArray("results"));
-                        moviesAdapter = new MovieItemsAdapter(movies, getWindow().getDecorView().getWidth());
+                        moviesAdapter = new MovieItemsAdapter(listActivity, movies);
                         moviesAdapter.setOrientation(getResources().getConfiguration().orientation);
                         lvMovies.setAdapter(moviesAdapter);
                     }
