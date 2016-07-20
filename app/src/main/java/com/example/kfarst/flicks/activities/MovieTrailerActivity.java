@@ -2,6 +2,7 @@ package com.example.kfarst.flicks.activities;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.kfarst.flicks.R;
@@ -59,5 +60,9 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
             }
         }
         });
+    }
+
+    public void closeMovieTrailer (View view) {
+        finish();
     }
 }
