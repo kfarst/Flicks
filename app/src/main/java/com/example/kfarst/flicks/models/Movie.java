@@ -11,6 +11,8 @@ import java.util.ArrayList;
  * Created by kfarst on 7/13/16.
  */
 public class Movie implements Serializable {
+    public int id() { return id; }
+
     public String getPosterPath() {
         return posterPath;
     }
@@ -51,10 +53,11 @@ public class Movie implements Serializable {
         return voteAverage;
     }
 
-    public boolean isVideo() {
+    public boolean hasVideo() {
         return video;
     }
 
+    private int id;
     private String posterPath;
     private boolean adult;
     private String overview;
@@ -68,6 +71,7 @@ public class Movie implements Serializable {
     private boolean video;
 
     public Movie(JSONObject jsonObject) throws JSONException {
+        id = jsonObject.getInt("id");
         posterPath = jsonObject.getString("poster_path");
         adult = jsonObject.getBoolean("adult");
         overview = jsonObject.getString("overview");

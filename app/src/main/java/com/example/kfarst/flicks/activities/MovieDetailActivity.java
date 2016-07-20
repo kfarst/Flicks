@@ -1,5 +1,7 @@
 package com.example.kfarst.flicks.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -63,6 +65,13 @@ public class MovieDetailActivity extends AppCompatActivity {
 
     public void onCloseActivity (View view) {
         finish();
+    }
+
+    public void showMovieTrailer (View view) {
+        Context context = view.getContext();
+        Intent i = new Intent(context, MovieTrailerActivity.class);
+        i.putExtra("movie", movie);
+        context.startActivity(i);
     }
 
     private String imageUrl (String imageName) {

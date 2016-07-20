@@ -28,6 +28,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MovieListActivity" />
         </activity>
+        <activity
+            android:name=".activities.MovieTrailerActivity"
+            android:screenOrientation="landscape">
+        </activity>
     </application>
 
 </manifest>
