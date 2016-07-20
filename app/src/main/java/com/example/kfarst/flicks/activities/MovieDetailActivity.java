@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.kfarst.flicks.R;
 import com.example.kfarst.flicks.models.Movie;
+import com.example.kfarst.flicks.support.DeviceDimensionsHelper;
 import com.squareup.picasso.Picasso;
 
 public class MovieDetailActivity extends AppCompatActivity {
@@ -34,6 +35,10 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         movie = (Movie) getIntent().getSerializableExtra("movie");
 
+        setupViews();
+    }
+
+    private void setupViews () {
         ivPoster = (ImageView) findViewById(R.id.ivPoster);
         tvTitle = (TextView) findViewById(R.id.tvTitle);
         rbRating = (RatingBar) findViewById(R.id.rbRating);
@@ -44,7 +49,7 @@ public class MovieDetailActivity extends AppCompatActivity {
                 .with(ivPoster.getContext())
                 .load(imageUrl(movie.getBackdropPath()))
                 .placeholder(R.drawable.landscape_placeholder)
-                //.resize(0, holder.moviePoster.getHeight())
+                .resize(DeviceDimensionsHelper.getDisplayWidth(getBaseContext()), 0)
                 .into(ivPoster);
 
         tvTitle.setText(movie.getTitle());
