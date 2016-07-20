@@ -55,8 +55,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         tvTitle.setText(movie.getTitle());
         tvTitle.setText(movie.getTitle());
 
-        rbRating.setNumStars(5);
-        rbRating.setStepSize((float) 2.0);
         rbRating.setRating((float) movie.getVoteAverage());
 
         tvPopularity.setText(String.valueOf(movie.getPopularity()));
