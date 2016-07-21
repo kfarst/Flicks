@@ -26,6 +26,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     @BindView(R.id.tvPopularity) TextView tvPopularity;
     @BindView(R.id.tvSynopsis) TextView tvSynopsis;
     @BindView(R.id.toolbar) Toolbar toolbar;
+    @BindView(R.id.ivPlay) ImageView ivPlay;
 
     private Movie movie;
 
@@ -61,6 +62,8 @@ public class MovieDetailActivity extends AppCompatActivity {
 
         tvPopularity.setText(String.valueOf(movie.getPopularity()));
         tvSynopsis.setText(movie.getOverview());
+
+        ivPlay.getLayoutParams().width = (int) (DeviceDimensionsHelper.getDisplayWidth(this) * 0.2);
     }
 
     public void onCloseActivity (View view) {
