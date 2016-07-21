@@ -81,6 +81,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/tvPopularity"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:textColor="@color/secondary_text"
                 android:layout_below="@+id/rbRating"
                 android:layout_alignParentLeft="true"
@@ -89,8 +90,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="New Text"
                 android:id="@+id/tvSynopsis"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:textColor="@color/secondary_text"
                 android:layout_below="@+id/tvPopularity"
                 android:layout_alignParentLeft="true"
