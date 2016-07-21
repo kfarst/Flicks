@@ -20,23 +20,25 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class MovieListActivity extends AppCompatActivity {
-    private SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.swipeContainer) SwipeRefreshLayout swipeContainer;
+    @BindView(R.id.lvMovies) RecyclerView lvMovies;
+
     private ArrayList<Movie> movies = new ArrayList<Movie>();
     private MovieItemsAdapter moviesAdapter;
-    private RecyclerView lvMovies;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
+        ButterKnife.bind(this);
 
-        lvMovies = (RecyclerView) findViewById(R.id.lvMovies);
         lvMovies.setLayoutManager(new LinearLayoutManager(this));
 
-        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

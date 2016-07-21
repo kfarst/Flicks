@@ -17,20 +17,22 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by kfarst on 7/19/16.
  */
 public class MovieTrailerActivity extends YouTubeBaseActivity {
+    @BindView(R.id.player) YouTubePlayerView youTubePlayerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_trailer_activity);
 
-        final YouTubePlayerView youTubePlayerView =
-                (YouTubePlayerView) findViewById(R.id.player);
-
+        ButterKnife.bind(this);
 
         Movie movie = (Movie) getIntent().getSerializableExtra("movie");
 

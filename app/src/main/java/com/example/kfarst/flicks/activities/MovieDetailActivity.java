@@ -16,20 +16,26 @@ import com.example.kfarst.flicks.models.Movie;
 import com.example.kfarst.flicks.support.DeviceDimensionsHelper;
 import com.squareup.picasso.Picasso;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MovieDetailActivity extends AppCompatActivity {
+    @BindView(R.id.ivPoster) ImageView ivPoster;
+    @BindView(R.id.tvTitle) TextView tvTitle;
+    @BindView(R.id.rbRating) RatingBar rbRating;
+    @BindView(R.id.tvPopularity) TextView tvPopularity;
+    @BindView(R.id.tvSynopsis) TextView tvSynopsis;
+    @BindView(R.id.toolbar) Toolbar toolbar;
+
     private Movie movie;
-    private ImageView ivPoster;
-    private TextView tvTitle;
-    private RatingBar rbRating;
-    private TextView tvPopularity;
-    private TextView tvSynopsis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_movie_detail);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -41,12 +47,6 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
     private void setupViews () {
-        ivPoster = (ImageView) findViewById(R.id.ivPoster);
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        rbRating = (RatingBar) findViewById(R.id.rbRating);
-        tvPopularity = (TextView) findViewById(R.id.tvPopularity);
-        tvSynopsis = (TextView) findViewById(R.id.tvSynopsis);
-
         Picasso
                 .with(ivPoster.getContext())
                 .load(imageUrl(movie.getBackdropPath()))
