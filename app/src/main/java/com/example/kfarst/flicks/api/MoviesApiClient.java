@@ -11,9 +11,14 @@ public class MoviesApiClient {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-    public static void get(String url, JsonHttpResponseHandler responseHandler) {
+    public static void getNowPlaying(JsonHttpResponseHandler responseHandler) {
         params.put("api_key", API_KEY);
-        client.get(getAbsolutelUrl(url), params, responseHandler);
+        client.get(getAbsolutelUrl("now_playing"), params, responseHandler);
+    }
+
+    public static void getVideos(int id, JsonHttpResponseHandler responseHandler) {
+        params.put("api_key", API_KEY);
+        client.get(getAbsolutelUrl(id + "/videos"), params, responseHandler);
     }
 
     public static String getAbsolutelUrl(String url) {

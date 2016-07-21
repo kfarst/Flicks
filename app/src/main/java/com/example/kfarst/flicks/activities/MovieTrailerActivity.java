@@ -34,7 +34,7 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
 
         Movie movie = (Movie) getIntent().getSerializableExtra("movie");
 
-        MoviesApiClient.get(movie.id() + "/videos", new JsonHttpResponseHandler() {
+        MoviesApiClient.getVideos(movie.id(), new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {

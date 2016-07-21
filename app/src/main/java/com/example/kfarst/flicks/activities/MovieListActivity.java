@@ -65,7 +65,7 @@ public class MovieListActivity extends AppCompatActivity {
     private void fetchMovies () {
         final Activity listActivity = this;
 
-        MoviesApiClient.get("now_playing", new JsonHttpResponseHandler() {
+        MoviesApiClient.getNowPlaying(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject movieList) {
                 // If the response is JSONObject instead of expected JSONArray
