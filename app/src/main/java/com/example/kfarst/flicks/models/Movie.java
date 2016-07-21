@@ -1,5 +1,8 @@
 package com.example.kfarst.flicks.models;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -85,7 +88,7 @@ public class Movie implements Serializable {
         video = jsonObject.getBoolean("video");
     }
 
-    public static ArrayList<Movie> mapObjectsFromJSON(JSONArray movieList) throws JSONException {
+    public static ArrayList<Movie> fromJSON(JSONArray movieList) throws JSONException {
         ArrayList<Movie> movies = new ArrayList<Movie>();
 
         for (int i = 0; i < movieList.length(); i++) {
@@ -93,5 +96,15 @@ public class Movie implements Serializable {
         }
 
         return movies;
+    }
+
+    public static String getVideoTrailerKey(JSONArray results) throws JSONException {
+        for (int i = 0; i < results.length(); i++) {
+            JSONObject video = results.getJSONObject(i);
+            if (video.getString("site").equalsIgnoreCase("youtube") && video.getString("type").equalsIgnoreCase("trailer")) {
+                return video.getString("key");
+            }
+        }
+        return "";
     }
 }

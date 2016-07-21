@@ -72,10 +72,10 @@ public class MovieListActivity extends AppCompatActivity {
                 try {
                     if (movies.size() > 0) {
                         moviesAdapter.clear();
-                        moviesAdapter.addAll(Movie.mapObjectsFromJSON(movieList.getJSONArray("results")));
+                        moviesAdapter.addAll(Movie.fromJSON(movieList.getJSONArray("results")));
                         swipeContainer.setRefreshing(false);
                     } else {
-                        movies = Movie.mapObjectsFromJSON(movieList.getJSONArray("results"));
+                        movies = Movie.fromJSON(movieList.getJSONArray("results"));
                         moviesAdapter = new MovieItemsAdapter(listActivity, movies);
                         moviesAdapter.setOrientation(getResources().getConfiguration().orientation);
                         lvMovies.setAdapter(moviesAdapter);

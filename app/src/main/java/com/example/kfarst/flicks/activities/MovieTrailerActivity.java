@@ -38,25 +38,33 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    final String videoKey = response.getJSONArray("results").getJSONObject(0).getString("key");
+                    final String videoKey = Movie.getVideoTrailerKey(response.getJSONArray("results"));
 
                     // do any work here to cue video, play video, etc.
-                    youTubePlayerView.initialize("AIzaSyAFRZDTBCULbDeVXlofvdUw1PDWp9WKSh4", new YouTubePlayer.OnInitializedListener() {
+                    youTubePlayerView.initialize(getString(R.string.youtube_api_key), new YouTubePlayer.OnInitializedListener() {
                         @Override
                         public void onInitializationSuccess(YouTubePlayer.Provider provider,
                                                             final YouTubePlayer youTubePlayer, boolean b) {
 
-                            youTubePlayer.loadVideo(videoKey);
+                            if (videoKey.length() > 0) {
+                                youTubePlayer.loadVideo(videoKey);
+                            } else {
+                                finish();
+                               Toast.makeText(getBaseContext(), R.string.no_trailer_found, Toast.LENGTH_LONG).show();
+                            }
                         }
-                        @SuppressLint("ShowToast")
+
                         @Override
                         public void onInitializationFailure(YouTubePlayer.Provider provider,
                                                             YouTubeInitializationResult youTubeInitializationResult) {
-                            Toast.makeText(getBaseContext(), youTubeInitializationResult.toString(), Toast.LENGTH_LONG);
+                            finish();
+                            Toast.makeText(getBaseContext(), R.string.error_loading_trailer, Toast.LENGTH_LONG).show();
                         }
                     });
             } catch (JSONException e) {
                 e.printStackTrace();
+                finish();
+                Toast.makeText(getBaseContext(), R.string.error_loading_trailer, Toast.LENGTH_LONG).show();
             }
         }
         });

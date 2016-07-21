@@ -4,4 +4,7 @@
     <string name="image_url">https://image.tmdb.org/t/p/w342</string>
     <string name="api_key">a07e22bc18f5cb106bfe4cc1f83ad8ed</string>
     <string name="title_activity_movie_detail">MovieDetailActivity</string>
+    <string name="youtube_api_key">AIzaSyAFRZDTBCULbDeVXlofvdUw1PDWp9WKSh4</string>
+    <string name="error_loading_trailer">Error loading YouTube trailer.</string>
+    <string name="no_trailer_found">No trailer found for movie.</string>
 </resources>
