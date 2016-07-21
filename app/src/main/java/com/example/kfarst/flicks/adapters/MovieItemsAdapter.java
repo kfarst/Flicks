@@ -110,7 +110,11 @@ public class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.Vi
     }
 
     private String imageUrl (String imageName) {
-        return "https://image.tmdb.org/t/p/w342" + imageName;
+        return mParentActivity.getString(R.string.image_url) +
+                mParentActivity.getString(orientation == Configuration.ORIENTATION_PORTRAIT ?
+                        R.string.poster_dimension :
+                        R.string.backdrop_dimension) +
+                imageName;
     }
 
     // Clean all elements of the recycler

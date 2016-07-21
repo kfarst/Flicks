@@ -6,14 +6,17 @@
 
     <TableLayout
         android:stretchColumns="*"
+        android:weightSum="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TableRow>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".8"
+                android:layout_weight="1"
                 android:layout_gravity="left|center_vertical"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
                 android:id="@+id/moviePoster" />
 
             <TableLayout

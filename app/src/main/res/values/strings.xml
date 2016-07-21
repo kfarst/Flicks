@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Flicks</string>
     <string name="base_movie_url">https://api.themoviedb.org/3/movie/</string>
-    <string name="image_url">https://image.tmdb.org/t/p/w342</string>
+    <string name="image_url">https://image.tmdb.org/t/p/</string>
+    <string name="poster_dimension">w500</string>
+    <string name="backdrop_dimension">w1280</string>
     <string name="api_key">a07e22bc18f5cb106bfe4cc1f83ad8ed</string>
     <string name="title_activity_movie_detail">MovieDetailActivity</string>
     <string name="youtube_api_key">AIzaSyAFRZDTBCULbDeVXlofvdUw1PDWp9WKSh4</string>

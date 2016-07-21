@@ -57,7 +57,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         tvTitle.setText(movie.getTitle());
         tvTitle.setText(movie.getTitle());
 
-        rbRating.setRating((float) movie.getVoteAverage());
+        rbRating.setRating((float) (movie.getVoteAverage() / 2));
 
         tvPopularity.setText(String.valueOf(movie.getPopularity()));
         tvSynopsis.setText(movie.getOverview());
@@ -75,6 +75,6 @@ public class MovieDetailActivity extends AppCompatActivity {
     }
 
     private String imageUrl (String imageName) {
-        return "https://image.tmdb.org/t/p/w342" + imageName;
+        return getString(R.string.image_url) + getString(R.string.backdrop_dimension) + imageName;
     }
 }
