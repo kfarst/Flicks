@@ -56,22 +56,17 @@ public class Movie implements Serializable {
         return voteAverage;
     }
 
-    public boolean hasVideo() {
-        return video;
-    }
-
     private int id;
     private String posterPath;
     private boolean adult;
     private String overview;
-    private String releaseDate;
     private String originalTitle;
     private String originalLanguage;
     private String title;
     private String backdropPath;
+    private String releaseDate;
     private double popularity;
     private double voteAverage;
-    private boolean video;
 
     public Movie(JSONObject jsonObject) throws JSONException {
         id = jsonObject.getInt("id");
@@ -85,7 +80,6 @@ public class Movie implements Serializable {
         backdropPath = jsonObject.getString("backdrop_path");
         popularity = jsonObject.getDouble("popularity");
         voteAverage = jsonObject.getDouble("vote_average");
-        video = jsonObject.getBoolean("video");
     }
 
     public static ArrayList<Movie> fromJSON(JSONArray movieList) throws JSONException {

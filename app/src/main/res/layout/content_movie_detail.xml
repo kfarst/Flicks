@@ -76,16 +76,60 @@
                 android:layout_alignParentLeft="true" />
 
             <TextView
+                android:id="@+id/releaseDateLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textStyle="bold"
+                android:text="Release Date"
+                android:layout_below="@+id/rbRating"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="@color/primary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/tvReleaseDate"
+                android:layout_below="@+id/releaseDateLabel"
+                android:textColor="@color/secondary_text"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/popularityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textStyle="bold"
+                android:text="Popularity"
+                android:layout_below="@+id/tvReleaseDate"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="@color/primary" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Medium Text"
                 android:id="@+id/tvPopularity"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_below="@+id/popularityLabel"
                 android:textColor="@color/secondary_text"
-                android:layout_below="@+id/rbRating"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+
+            <TextView
+                android:id="@+id/synopsisLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textStyle="bold"
+                android:text="Synopsis"
+                android:layout_below="@+id/tvPopularity"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:textColor="@color/primary" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,9 +137,8 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="New Text"
                 android:id="@+id/tvSynopsis"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:textColor="@color/secondary_text"
-                android:layout_below="@+id/tvPopularity"
+                android:layout_below="@+id/synopsisLabel"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
         </RelativeLayout>

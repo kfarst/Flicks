@@ -23,6 +23,7 @@ public class MovieDetailActivity extends AppCompatActivity {
     @BindView(R.id.ivPoster) ImageView ivPoster;
     @BindView(R.id.tvTitle) TextView tvTitle;
     @BindView(R.id.rbRating) RatingBar rbRating;
+    @BindView(R.id.tvReleaseDate) TextView tvReleaseDate;
     @BindView(R.id.tvPopularity) TextView tvPopularity;
     @BindView(R.id.tvSynopsis) TextView tvSynopsis;
     @BindView(R.id.toolbar) Toolbar toolbar;
@@ -56,10 +57,8 @@ public class MovieDetailActivity extends AppCompatActivity {
                 .into(ivPoster);
 
         tvTitle.setText(movie.getTitle());
-        tvTitle.setText(movie.getTitle());
-
         rbRating.setRating((float) (movie.getVoteAverage() / 2));
-
+        tvReleaseDate.setText(movie.getReleaseDate());
         tvPopularity.setText(String.valueOf(movie.getPopularity()));
         tvSynopsis.setText(movie.getOverview());
 
