@@ -65,6 +65,10 @@ public class MovieListActivity extends AppCompatActivity {
     private void fetchMovies () {
         final Activity listActivity = this;
 
+        // Base error message will remain the same, then append a clarifying user action message
+        // depending on the context.
+        final String errorString = getString(R.string.error_fetching_movies);
+
         MoviesApiClient.getNowPlaying(new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject movieList) {
@@ -81,14 +85,13 @@ public class MovieListActivity extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getBaseContext(), errorString + ' ' + getString(R.string.please_try_again), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 Log.e("ERROR", throwable.toString());
-                String errorString = getString(R.string.error_fetching_movies);
-
                 if (movies.size() > 0) {
                     Toast.makeText(getBaseContext(), errorString + ' ' + getString(R.string.please_try_again), Toast.LENGTH_SHORT).show();
                 } else {

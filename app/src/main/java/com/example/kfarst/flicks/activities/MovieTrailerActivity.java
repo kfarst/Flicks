@@ -47,7 +47,7 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
                         @Override
                         public void onInitializationSuccess(YouTubePlayer.Provider provider,
                                                             final YouTubePlayer youTubePlayer, boolean b) {
-
+                            // If a YouTube trailer is found, load video, otherwise close activity and show clarifying error
                             if (videoKey.length() > 0) {
                                 youTubePlayer.loadVideo(videoKey);
                             } else {
@@ -59,12 +59,15 @@ public class MovieTrailerActivity extends YouTubeBaseActivity {
                         @Override
                         public void onInitializationFailure(YouTubePlayer.Provider provider,
                                                             YouTubeInitializationResult youTubeInitializationResult) {
+                            // Close the activity and show clarifying error
                             finish();
                             Toast.makeText(getBaseContext(), R.string.error_loading_trailer, Toast.LENGTH_LONG).show();
                         }
                     });
             } catch (JSONException e) {
                 e.printStackTrace();
+
+                // Close the activity and show clarifying error
                 finish();
                 Toast.makeText(getBaseContext(), R.string.error_loading_trailer, Toast.LENGTH_LONG).show();
             }

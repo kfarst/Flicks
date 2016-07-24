@@ -95,6 +95,7 @@ public class Movie implements Serializable {
     public static String getVideoTrailerKey(JSONArray results) throws JSONException {
         for (int i = 0; i < results.length(); i++) {
             JSONObject video = results.getJSONObject(i);
+            // Video must both be a trailer and from YouTube in order to work properly
             if (video.getString("site").equalsIgnoreCase("youtube") && video.getString("type").equalsIgnoreCase("trailer")) {
                 return video.getString("key");
             }

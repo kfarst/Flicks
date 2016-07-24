@@ -57,11 +57,15 @@ public class MovieDetailActivity extends AppCompatActivity {
                 .into(ivPoster);
 
         tvTitle.setText(movie.getTitle());
+
+        // Average vote is on a scale of 10, so divide in half for 5 star rating
         rbRating.setRating((float) (movie.getVoteAverage() / 2));
+
         tvReleaseDate.setText(movie.getReleaseDate());
         tvPopularity.setText(String.valueOf(movie.getPopularity()));
         tvSynopsis.setText(movie.getOverview());
 
+        // Adjust the size of the play icon overlay based on the image width
         ivPlay.getLayoutParams().width = (int) (DeviceDimensionsHelper.getDisplayWidth(this) * 0.2);
     }
 

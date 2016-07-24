@@ -94,6 +94,7 @@ public class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.Vi
         holder.movieTitle.setText(movie.getTitle());
         holder.movieSummary.setText(movie.getOverview());
 
+        // Load a difference image depending on the orientation
         Picasso
                 .with(holder.moviePoster.getContext())
                 .load(imageUrl(orientation == Configuration.ORIENTATION_PORTRAIT ? movie.getPosterPath() : movie.getBackdropPath()))
@@ -110,6 +111,7 @@ public class MovieItemsAdapter extends RecyclerView.Adapter<MovieItemsAdapter.Vi
     }
 
     private String imageUrl (String imageName) {
+        // Load a difference image size depending on the orientation
         return mParentActivity.getString(R.string.image_url) +
                 mParentActivity.getString(orientation == Configuration.ORIENTATION_PORTRAIT ?
                         R.string.poster_dimension :
