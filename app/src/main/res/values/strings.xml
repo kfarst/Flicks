@@ -9,4 +9,7 @@
     <string name="youtube_api_key">AIzaSyAFRZDTBCULbDeVXlofvdUw1PDWp9WKSh4</string>
     <string name="error_loading_trailer">Error loading YouTube trailer.</string>
     <string name="no_trailer_found">No trailer found for movie.</string>
+    <string name="error_fetching_movies">Error fetching movies.</string>
+    <string name="please_try_again">Please try again.</string>
+    <string name="please_restart_app">Please restart app.</string>
 </resources>
